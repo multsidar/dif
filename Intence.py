@@ -27,6 +27,18 @@ def intence(points, spacing, nangle, wavelen):
             intenses[i][j] = (cosum ** 2 + sinsum ** 2)
     return intenses
 
+def atom_factor(arg , taf):
+    dh = 0.05
+    imax = 29
+
+    if arg >= 0:
+        i = m.trunc(arg / dh)
+        if i > imax :
+            return 0
+        else:
+            dx = (arg % dh)
+            return taf[i] + (taf[i+1] - taf[i]) *dx
+
 
 def int_show(points, spacing, nangle, wavelen):
     values = intence(points, spacing, nangle, wavelen)
