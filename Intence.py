@@ -27,17 +27,37 @@ def intence(points, spacing, nangle, wavelen):
             intenses[i][j] = (cosum ** 2 + sinsum ** 2)
     return intenses
 
-def atom_factor(arg , taf):
+
+def intencity(points, spacing, nangle, wavelen, arg, taf):
+    gr = grid.make_grid(points, spacing)
+    intenses = np.empty([nangle, nangle], float)
+    cosum = 0.
+    sinsum = 0.
+    theta = np.linspace(0, np.pi, nangle)
+    phi = np.linspace(0, 2 * np.pi, nangle)
+    for i, t in enumerate(theta):
+        for j, p in enumerate(phi):
+            for k in range(points ** 3):
+                x = gr[k][0]
+                y = gr[k][1]
+                z = gr[k][2]
+                cosum = cosum + m.cos(delta(t,  p, x, y, z, wavelen))
+                sinsum = sinsum + m.sin(delta(t,  p, x, y, z, wavelen))
+            intenses[i][j] = m.sqrt(m.sqrt(cosum ** 2 + sinsum ** 2) * atom_factor(arg, taf) * spacing)
+    return intenses
+
+
+def atom_factor(arg, taf):
     dh = 0.05
     imax = 29
 
     if arg >= 0:
         i = m.trunc(arg / dh)
-        if i > imax :
+        if i > imax:
             return 0
         else:
             dx = (arg % dh)
-            return taf[i] + (taf[i+1] - taf[i]) *dx
+            return taf[i] + (taf[i+1] - taf[i]) * dx
 
 
 def int_show(points, spacing, nangle, wavelen):
@@ -57,4 +77,3 @@ def int_show(points, spacing, nangle, wavelen):
     plt.grid(c='black')
 
     plt.show()
-

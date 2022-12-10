@@ -3,8 +3,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-wavelen=1.4
-values = Intence.intence(3, 1., 180, wavelen)
+wavelen=2
+values = Intence.intencity(3, 1., 180, wavelen)
 
 # Drawing data points
 phi = np.linspace(0, 2 * np.pi, 180)
