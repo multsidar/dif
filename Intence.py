@@ -112,7 +112,7 @@ def Intensity1(A, L, T, Fi, c, taf):
     return m.sqrt(A*F*Sum)
 
 
-def integral_inten(points, spacing, nangle, wavelen, taf):
+def integral_inten(points, spacing, nangle, wavelen, taf, brave):
     gr = grid.make_grid(points, spacing)
     intenses = np.empty([nangle, nangle], float)
     theta = np.linspace(0, np.pi, nangle)
