@@ -3,8 +3,11 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-wavelen=2
-values = Intence.intencity(3, 1., 180, wavelen)
+with open('FCTA06.DAT') as taf:
+    lines = [float(line.rstrip()) for line in taf]
+
+wavelen=1
+values = Intence.integral_inten(3, 0.93, 180, wavelen, lines)
 
 # Drawing data points
 phi = np.linspace(0, 2 * np.pi, 180)

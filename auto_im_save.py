@@ -1,9 +1,11 @@
 import Intence
 import numpy as np
 from matplotlib import pyplot as plt
-for i in range(100):
-    wavelen = 1. - i/100
-    values = Intence.intence(3, 1., 180, wavelen)
+with open('FCTA06.DAT') as taf:
+    lines = [float(line.rstrip()) for line in taf]
+for i in range(10):
+    wavelen = 1. - i/10
+    values = Intence.inten(3, 1, 180, wavelen, lines)
 
     # Drawing data points
     phi = np.linspace(0, 2 * np.pi, 180)

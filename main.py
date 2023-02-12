@@ -1,5 +1,5 @@
 import numpy as np
-from Intence import intence ,int_show
+from Intence import intence ,int_show , intencity
 from grid import make_grid, v_grid , g_grid
 
 
